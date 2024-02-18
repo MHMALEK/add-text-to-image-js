@@ -1,8 +1,16 @@
-// const { uploadFile, downloadFile, downloadAllFiles } = require("./aws.service");
-const firebase = require("./firebase.service");
-const malek = async () => {
-  const m = await firebase.uploadFile("output.png");
-  console.log(m);
-};
+const startBot = require("./bot.service");
 
+// init server
+const app = require("./server");
 
+// api routes
+require("./api");
+
+// listen to server
+app.listen(3000, () => console.log("Server is running on port 3000"));
+
+// start telegram bot
+startBot();
+
+// cron job
+require("./cronjob");
